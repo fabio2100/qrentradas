@@ -4,11 +4,9 @@ import {useSearchParams} from 'next/navigation'
 export default async function handler(req,res){
 
     let html;
-    console.log(req.url)
     const valueUrl = req.url;
-    console.log(valueUrl.search('id='))
     if(!valueUrl.search('id=')){
-        html = '`<h1 style="background-color: orange">Numero incorrecto</h1>`'
+        html = '`<h1 style="background-color: orange">Numero incorrecto</h1><h2>No hay ningun numero</h2>`'
         return res.status(200).send(html)
     }
     const id = valueUrl.split('id=')[1]

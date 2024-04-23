@@ -1,5 +1,4 @@
 import { sql } from "@vercel/postgres"
-import {useSearchParams} from 'next/navigation'
 
 export default async function handler(req,res){
 
@@ -13,14 +12,14 @@ export default async function handler(req,res){
     const {rows} = await sql`SELECT validado FROM qrentradas WHERE id=${id}`;
     
     if(rows.length==0){
-        html = `<h1 style="background-color: orange">Numero incorrecto</h1>`;
+        html = `<div style="background-color: orange; width: 100%; height: 100%; padding-top: 100px; text-align: center;"><img src="/wrong.png"><h1>NUMERO INCORRECTO</h1></div>`;
         return res.status(200).send(html)
     }
     if(rows[0].validado){
-        html = `<h1 style="background-color: red;">YA INGRESO</h1>`
+        html = `<div style="background-color: red; width: 100%; height: 100%; padding-top: 100px; text-align: center;"><img src="/wrong.png"><h1>YA INGRESO</h1></div>`
     }else{
         sql`UPDATE qrentradas SET validado=true WHERE id=${id}`
-        html = `<h1 style="background-color: green;">VALIDADO</h1>`
+        html = `<div style="background-color: green; width: 100%; height: 100%; padding-top: 100px; text-align: center;"><img src="/cheque.png"><h1>INGRESO CORRECTO</h1></div>`
     }
 
     // Envía la respuesta con el contenido HTML

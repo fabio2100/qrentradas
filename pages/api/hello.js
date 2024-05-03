@@ -18,7 +18,7 @@ export default async function handler(req,res){
     if(rows[0].validado){
         html = `<div style="background-color: red; width: 100%; height: 100%; padding-top: 100px; text-align: center;"><img src="/wrong.png"><h1>YA INGRESO</h1></div>`
     }else{
-        await sql`UPDATE qrentradas SET validado=true WHERE id=${id}`
+        await sql`UPDATE qrentradas SET validado=true,created_at=NOW() WHERE id=${id}`
         html = `<div style="background-color: green; width: 100%; height: 100%; padding-top: 100px; text-align: center;"><img src="/cheque.png"><h1>INGRESO CORRECTO</h1></div>`
     }
 

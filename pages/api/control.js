@@ -8,7 +8,11 @@ export default async function handler(req,res){
         html = '`<h1 style="background-color: orange">Numero incorrecto</h1><h2>No hay ningun numero</h2>`'
         return res.status(200).send(html)
     }
-    const id = valueUrl.split('id=')[1]
+    const id = Math.sqrt(valueUrl.split('id=')[1]);
+    if(!Number.isInteger(id)){
+        html = `<div style="background-color: orange; width: 100%; height: 100%; padding-top: 100px; text-align: center;"><img src="/wrong.png"><h1>NUMERO INCORRECTO</h1></div>`;
+        return res.status(200).send(html)
+    }
     const {rows} = await sql`SELECT validado FROM qrentradas WHERE id=${id}`;
     
     if(rows.length==0){

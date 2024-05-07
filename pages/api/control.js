@@ -3,6 +3,8 @@ import { sql } from "@vercel/postgres"
 export default async function handler(req,res){
 
     let html;
+    html = '<h1 style="background-color: black;color: white">Disabled</h1>'
+    return res.status(200).send(html)
     const valueUrl = req.url;
     if(!valueUrl.search('id=')){
         html = '`<h1 style="background-color: orange">Numero incorrecto</h1><h2>No hay ningun numero</h2>`'
